@@ -1,5 +1,5 @@
 import express from "express";
-import routes from "./routes/router.js";
+import routes from "./src/routes/router.js";
 import mongoose from "mongoose";
 
 const port = 3000;
