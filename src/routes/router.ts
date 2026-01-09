@@ -12,7 +12,6 @@ router.get("/answer-keys", AnswerKeyController.list);
 router.post("/answer-keys", AnswerKeyController.create);
 router.get("/answer-keys/:id", AnswerKeyController.show);
 
-
 /*
 Attempts (tentativas)
 */

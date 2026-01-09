@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import helmet from "helmet";
 import cors from "cors"; 
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -23,8 +23,8 @@ async function startServer() {
     await mongoose.connect(MONGO_URI);
     console.log("Connected to the Database");
 
-    app.listen(port, () => {
-      console.log(`Server is running on port: http://localhost:${port}`);
+    app.listen(PORT, () => {
+      console.log(`Server is running on port: http://localhost:${PORT}`);
     });
   } catch (error) {
     console.log(`There was an error trying to connect to mongo: ${error}`);

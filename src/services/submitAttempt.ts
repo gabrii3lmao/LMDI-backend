@@ -28,6 +28,7 @@ export async function submitAttempt(
   });
 
   return {
+    attemptId: attempt._id,
     score: result.score,
     total: answerKey.totalQuestions,
     results: result.results,
