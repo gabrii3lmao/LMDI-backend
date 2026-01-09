@@ -5,7 +5,7 @@ import { submitAttempt } from "../services/submitAttempt.js";
 export class AttemptController {
   static async submit(req: Request, res: Response, next: NextFunction) {
     try {
-      const { answerKeyId } = req.params;
+      const { answerKeyId }:any = req.params;
       const { participantName, answers } = req.body;
 
       const result = await submitAttempt(answerKeyId, participantName, answers);

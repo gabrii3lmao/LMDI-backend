@@ -1,6 +1,6 @@
 // backend/index.ts
 import express from "express";
-import routes from "./src/routes/router.js";
+import routes from "./routes/router.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 import helmet from "helmet";
