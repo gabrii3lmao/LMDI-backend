@@ -1,4 +1,4 @@
-import { AnswerKey } from "../models/TemplateModel.js";
+import { AnswerKey } from "../models/AnswerKeyModel.js";
 import { Attempt } from "../models/AttemptModel.js";
 import { gradeAttempt } from "./gradeAttempt.js";
 
@@ -15,7 +15,7 @@ export async function submitAttempt(
   const answerKey = await AnswerKey.findById(answerKeyId);
 
   if (!answerKey) {
-    throw new Error("Gabarito oficial não encontrado");
+    throw new Error("Oficial Template now found");
   }
 
   const result = gradeAttempt(answerKey.answers, answers);
