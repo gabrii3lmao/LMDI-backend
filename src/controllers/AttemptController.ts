@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { Attempt } from "../models/AttemptModel.js";
 import { submitAttempt } from "../services/submitAttempt.js";
+import mongoose from "mongoose";
 
 export class AttemptController {
   static async submit(req: Request, res: Response, next: NextFunction) {
@@ -30,15 +31,21 @@ export class AttemptController {
   }
 
   static async listByKey(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { answerKeyId } = req.params;
-      
-      const attempts = await Attempt.find({ answerKey: answerKeyId }).sort({
-        score: -1,
-      });
-      return res.status(200).json(attempts);
-    } catch (error) {
-      next(error);
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ message: "answerKey id is required" });
     }
+
+    const attempts = await Attempt.find({
+      answerKey: new mongoose.Types.ObjectId(id),
+    }).sort({ score: -1 });
+
+    return res.status(200).json(attempts);
+  } catch (error) {
+    next(error);
   }
+}
+
 }
