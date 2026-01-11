@@ -31,21 +31,20 @@ export class AttemptController {
   }
 
   static async listByKey(req: Request, res: Response, next: NextFunction) {
-  try {
-    const { id } = req.params;
+    try {
+      const { answerKeyId } = req.params;
 
-    if (!id) {
-      return res.status(400).json({ message: "answerKey id is required" });
+      if (!answerKeyId) {
+        return res.status(400).json({ message: "answerKey id is required" });
+      }
+
+      const attempts = await Attempt.find({
+        answerKey: new mongoose.Types.ObjectId(answerKeyId),
+      }).sort({ score: -1 });
+
+      return res.status(200).json(attempts);
+    } catch (error) {
+      next(error);
     }
-
-    const attempts = await Attempt.find({
-      answerKey: new mongoose.Types.ObjectId(id),
-    }).sort({ score: -1 });
-
-    return res.status(200).json(attempts);
-  } catch (error) {
-    next(error);
   }
-}
-
 }
