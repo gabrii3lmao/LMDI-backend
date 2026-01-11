@@ -5,7 +5,7 @@ import { submitAttempt } from "../services/submitAttempt.js";
 export class AttemptController {
   static async submit(req: Request, res: Response, next: NextFunction) {
     try {
-      const { answerKeyId }:any = req.params;
+      const { answerKeyId }: any = req.params;
       const { participantName, answers } = req.body;
 
       const result = await submitAttempt(answerKeyId, participantName, answers);
@@ -24,6 +24,19 @@ export class AttemptController {
       }
 
       return res.json(attempt);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async listByKey(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { answerKeyId } = req.params;
+      
+      const attempts = await Attempt.find({ answerKey: answerKeyId }).sort({
+        score: -1,
+      });
+      return res.status(200).json(attempts);
     } catch (error) {
       next(error);
     }
