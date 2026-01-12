@@ -29,7 +29,7 @@ Essa separação evita acoplamento excessivo e facilita manutenção, testes e e
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - **TypeScript**  
   Utilizado para garantir tipagem estática, contratos claros entre camadas e maior segurança na evolução do código.
@@ -50,23 +50,17 @@ Essa separação evita acoplamento excessivo e facilita manutenção, testes e e
 
 ## Principais aprendizados
 
-Durante o desenvolvimento deste projeto, foram consolidados conceitos importantes:
+Ao longo do desenvolvimento, o principal aprendizado foi entender melhor como transformar um problema real em uma solução bem modelada. Trabalhei a separação entre entidades, services e controllers, mantive regras de negócio fora das rotas e dei mais atenção às validações no próprio domínio.
 
-- Modelagem de domínio baseada em **problemas reais**, não apenas em tabelas
-- Diferença clara entre **entidade**, **serviço** e **controller**
-- Uso consciente de **Services** para encapsular regras de negócio
-- Implementação de **validações no domínio**, não apenas na interface
-- Relacionamentos entre documentos no MongoDB usando referências
-- Escrita de código TypeScript mais expressivo e confiável
-- Organização de CSS por **componente e responsabilidade**, não por conveniência
-- Evitar lógica de negócio dentro de rotas ou controllers
+Também foi um exercício importante para escrever código de forma mais clara, organizar melhor a lógica do backend e estruturar o frontend com mais responsabilidade.
 
 ---
 
 ## Visão educacional
-Esse projeto foi construído com foco em aprendizado, não em atalhos. Dentro do contexto do Projeto Integrador do IFPI, cada decisão técnica foi pensada a partir de problemas reais levantados durante a pesquisa, sempre tentando responder a uma pergunta simples: se esse sistema crescer, ele ainda faz sentido?
+Esse projeto foi construído com foco em aprendizado, não em atalhos. Dentro do contexto do Projeto Integrador do IFPI, cada decisão técnica foi pensada a partir de problemas reais levantados durante a pesquisa. 
 
 O resultado é uma base organizada, fácil de entender e de evoluir, alinhada com práticas profissionais de desenvolvimento backend.
+
 ---
 
 Feito com amor por Gabriel Moura Luz.
