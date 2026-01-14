@@ -4,7 +4,9 @@ import routes from "./routes/router.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 import helmet from "helmet";
+import session from "express-session";
 import cors from "cors";
+import MongoStore from "connect-mongo";
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -18,14 +20,32 @@ app.use(
     credentials: true,
   })
 );
+app.use(
+  session({
+    name: "sid",
+    secret: process.env.SESSION_SECRET!,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI!,
+    }),
+    cookie: {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+
+app.set("trust proxy", 1);
 
 
 app.use("/api", routes);
 
 async function startServer() {
   try {
-    const MONGO_URI: string =
-      process.env.MONGO_URI!;
+    const MONGO_URI: string = process.env.MONGO_URI!;
     await mongoose.connect(MONGO_URI);
     console.log("Connected to the Database");
 
