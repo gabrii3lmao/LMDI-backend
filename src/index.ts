@@ -13,6 +13,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(helmet());
+app.set("trust proxy", 1);
 
 app.use(
   cors({
@@ -20,6 +21,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(
   session({
     name: "sid",
@@ -32,14 +34,11 @@ app.use(
     cookie: {
       httpOnly: true,
       sameSite: "none",
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
 );
-
-app.set("trust proxy", 1);
-
 
 app.use("/api", routes);
 

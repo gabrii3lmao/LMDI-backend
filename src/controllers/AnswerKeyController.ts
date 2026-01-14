@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { AnswerKey } from "../models/AnswerKeyModel.js";
+import { AnswerKey } from "../models/Template/AnswerKeyModel.js";
 
 export class AnswerKeyController {
   static async create(req: Request, res: Response, next: NextFunction) {

@@ -1,5 +1,5 @@
-import { AnswerKey } from "../models/AnswerKeyModel.js";
-import { Attempt } from "../models/AttemptModel.js";
+import { AnswerKey } from "../models/Template/AnswerKeyModel.js";
+import { Attempt } from "../models/Template/AttemptModel.js";
 import { gradeAttempt } from "./gradeAttempt.js";
 
 type Answer = {

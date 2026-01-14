@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { Attempt } from "../models/AttemptModel.js";
+import { Attempt } from "../models/Template/AttemptModel.js";
 import { submitAttempt } from "../services/submitAttempt.js";
 import mongoose from "mongoose";
 
