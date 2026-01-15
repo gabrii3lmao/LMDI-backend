@@ -6,6 +6,7 @@ import "dotenv/config";
 import helmet from "helmet";
 import session from "express-session";
 import cors from "cors";
+import { ensureCsrfToken } from "./middlewares/csrf.js";
 import MongoStore from "connect-mongo";
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -22,6 +23,7 @@ app.use(
   })
 );
 
+let isProduction = process.env.NODE_ENV === "production";
 app.use(
   session({
     name: "sid",
@@ -33,14 +35,14 @@ app.use(
     }),
     cookie: {
       httpOnly: true,
-      sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction,
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
 );
 
-app.use("/api", routes);
+app.use("/api", ensureCsrfToken, routes);
 
 async function startServer() {
   try {
