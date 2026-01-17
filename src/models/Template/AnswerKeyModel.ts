@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import { AnswerSchema } from "./AnswerModel.js";
 
 const AnswerKeySchema = new Schema(
@@ -22,6 +22,11 @@ const AnswerKeySchema = new Schema(
           "The number of responses does not match the total number of questions.",
       },
     },
+    owner: {
+      type: Types.ObjectId,
+      ref: "User",
+      required: true
+    }
   },
   { timestamps: true }
 );

@@ -10,7 +10,8 @@ type Answer = {
 export async function submitAttempt(
   answerKeyId: string,
   participantName: string,
-  answers: Answer[]
+  answers: Answer[],
+  userId: string,
 ) {
   const answerKey = await AnswerKey.findById(answerKeyId);
 
@@ -25,6 +26,7 @@ export async function submitAttempt(
     answerKey: answerKey._id,
     answers,
     score: result.score,
+    owner: userId,
   });
 
   return {

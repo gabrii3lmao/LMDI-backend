@@ -15,14 +15,19 @@ const AttemptSchema = new Schema(
     },
     answers: {
       type: [AnswerSchema],
-      required: true
+      required: true,
     },
     score: {
       type: Number,
       min: 0,
     },
+    owner: {
+      type: Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export const Attempt = model("Attempt", AttemptSchema);
