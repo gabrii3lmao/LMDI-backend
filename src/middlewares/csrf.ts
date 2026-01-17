@@ -4,7 +4,7 @@ import type { Request, Response, NextFunction } from "express";
 export function ensureCsrfToken(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   if (!req.session.csrfToken) {
     req.session.csrfToken = crypto.randomBytes(32).toString("hex");
@@ -15,7 +15,7 @@ export function ensureCsrfToken(
 export function verifyCsrfToken(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const token = req.headers["x-csrf-token"];
 
