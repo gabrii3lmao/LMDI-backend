@@ -14,18 +14,16 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://lmdi-frontend.vercel.app"],
+    origin: ["http://localhost:5173", "https://lmdiif.vercel.app/"],
     credentials: true,
-  })
+  }),
 );
-
 
 app.use("/api", routes);
 
 async function startServer() {
   try {
-    const MONGO_URI: string =
-      process.env.MONGO_URI!;
+    const MONGO_URI: string = process.env.MONGO_URI!;
     await mongoose.connect(MONGO_URI);
     console.log("Connected to the Database");
 
