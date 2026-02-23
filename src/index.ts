@@ -14,8 +14,12 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://lmdiif.vercel.app/"],
+    // Remova a "/" no final de vercel.app
+    origin: ["http://localhost:5173", "https://lmdiif.vercel.app"],
     credentials: true,
+    // Informe ao CORS que o seu header customizado é permitido
+    allowedHeaders: ["Content-Type", "Authorization", "X-CSRF-Token"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   }),
 );
 
